@@ -54,6 +54,7 @@ class AssociationController extends Controller
         $validated = $request->validate([
             'code'        => ['required', 'string', 'max:64'],
             'name'        => ['required', 'string', 'max:190'],
+            'address'     => ['nullable', 'string', 'max:1024'],
             'province_id' => ['required', 'integer', 'exists:provinces,id'],
             'regency_id'  => ['nullable', 'integer', 'exists:regencies,id'],
             'admin_id'    => ['nullable', 'integer', 'exists:users,id'],
@@ -94,6 +95,7 @@ class AssociationController extends Controller
         $validated = $request->validate([
             'code'        => ['sometimes', 'string', 'max:64'],
             'name'        => ['sometimes', 'string', 'max:190'],
+            'address'     => ['nullable', 'string', 'max:1024'],
             'province_id' => ['sometimes', 'integer', 'exists:provinces,id'],
             'regency_id'  => ['nullable', 'integer', 'exists:regencies,id'],
             'admin_id'    => ['nullable', 'integer', 'exists:users,id'],

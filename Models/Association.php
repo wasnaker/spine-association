@@ -32,6 +32,7 @@ class Association extends Model
     protected $fillable = [
         'code',
         'name',
+        'address',
         'province_id',
         'regency_id',
         'admin_id',
