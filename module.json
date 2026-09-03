@@ -1,0 +1,12 @@
+{
+    "name": "Association",
+    "alias": "association",
+    "description": "Module Association for laravelspine — asosiasi surveyor per provinsi (DPW RUI).",
+    "keywords": ["spine", "association", "dpw", "rui"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Association\\Providers\\AssociationServiceProvider"
+    ],
+    "files": [],
+    "requires": ["Region"]
+}

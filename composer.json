@@ -1,0 +1,22 @@
+{
+    "name": "wasnaker/spine-association",
+    "description": "Spine Association module (asosiasi surveyor per provinsi — DPW RUI)",
+    "license": "MIT",
+    "type": "laravel-module",
+    "require": {
+        "php": "^8.3",
+        "nwidart/laravel-modules": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Association\\": ""
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Association\\Providers\\AssociationServiceProvider"
+            ]
+        }
+    }
+}
