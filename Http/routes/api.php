@@ -27,6 +27,7 @@ Route::prefix('api/v1')->middleware('auth:sanctum')->group(function () {
         Route::get('/{id}', [AssociationController::class, 'show'])->whereNumber('id')->middleware('permission:association:view');
         Route::put('/{id}', [AssociationController::class, 'update'])->whereNumber('id')->middleware('permission:association:edit');
         Route::get('/{id}/activity-logs', [AssociationController::class, 'activityLogs'])->whereNumber('id')->middleware('permission:association:view');
+        Route::get('/{id}/staffs', [AssociationController::class, 'staffs'])->whereNumber('id')->middleware('permission:association:view');
         Route::delete('/{id}', [AssociationController::class, 'destroy'])->whereNumber('id')->middleware('permission:association:delete');
     });
 });

@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Association\Models\Association;
+use Modules\Association\Models\AssociationStaff;
 use Spine\Services\ActivityLogService;
 
 /**
@@ -125,6 +126,26 @@ class AssociationController extends Controller
         $entity->delete();
 
         return response()->json(['message' => 'Association deleted']);
+    }
+
+    /**
+     * Staff asosiasi — pola Customer/Surveyor::staffs(). Tanpa branch:
+     * association_id = id asosiasi.
+     */
+    public function staffs(int $id): JsonResponse
+    {
+        $association = Association::find($id);
+
+        if (! $association) {
+            return response()->json(['message' => 'Association not found'], 404);
+        }
+
+        $query = AssociationStaff::query()
+            ->with(['user:id,name,email'])
+            ->where('association_id', $association->id)
+            ->orderBy('jabatan')->orderBy('realname');
+
+        return response()->json(['data' => $query->get()]);
     }
 
     public function activityLogs(int $id): JsonResponse

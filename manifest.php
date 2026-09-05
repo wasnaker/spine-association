@@ -41,6 +41,14 @@ return [
             'permission' => 'association:view',
         ],
         [
+            'slug'       => 'staffs',
+            'label'      => 'Staff',
+            'icon'       => '👥',
+            'api'        => '/api/v1/associations/{id}/staffs',
+            'position'   => 26,
+            'permission' => 'association:view',
+        ],
+        [
             'slug'       => 'activity',
             'label'      => 'Activity',
             'icon'       => '🕐',
