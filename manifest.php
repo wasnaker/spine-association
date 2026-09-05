@@ -58,6 +58,29 @@ return [
         ],
     ],
 
+    'settings' => [
+        [
+            'slug'     => 'association',
+            'label'    => 'Association',
+            'icon'     => '🏛️',
+            'position' => 50,
+            'fields'   => [
+                [
+                    'key'     => 'association_start_number',
+                    'label'   => 'Start Number',
+                    'type'    => 'number',
+                    'default' => '70104',
+                ],
+                [
+                    'key'     => 'association_code_length',
+                    'label'   => 'Code Length',
+                    'type'    => 'number',
+                    'default' => '4',
+                ],
+            ],
+        ],
+    ],
+
     'rbac' => [
         'permissions' => [
             'association:view', 'association:create', 'association:edit', 'association:delete',
