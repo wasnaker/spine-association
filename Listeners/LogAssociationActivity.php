@@ -40,12 +40,24 @@ class LogAssociationActivity
             return;
         }
 
+        $changes = $event->changes;
+
         $this->activityLog->log(
-            "Association updated: " . $this->label($event->entity),
+            "Association updated: " . $this->label($event->entity) . " (" . $this->describe($changes) . ")",
             $event->entity,
             $this->user(),
-            ['event' => 'updated', 'changes' => $event->changes],
+            ['event' => 'updated', 'changes' => $changes],
         );
+
+        $status = $changes['is_active'] ?? null;
+        if ($status && $status['old'] !== $status['new']) {
+            $this->activityLog->log(
+                "Association status changed: " . $this->boolLabel($status['old']) . " -> " . $this->boolLabel($status['new']),
+                $event->entity,
+                $this->user(),
+                ['event' => 'association.status_changed', 'old' => $status['old'], 'new' => $status['new']],
+            );
+        }
     }
 
     public function deleted(EntityDeleted $event): void
@@ -62,6 +74,27 @@ class LogAssociationActivity
             null,
             $event->entityType,
         );
+    }
+
+    private function describe(array $changes): string
+    {
+        $parts = [];
+
+        foreach ($changes as $field => $change) {
+            if (in_array($field, ['updated_at', 'remember_token'], true)) {
+                continue;
+            }
+
+            $label = Association::labels()[$field] ?? $field;
+            $parts[] = $label . ': ' . $change['old'] . ' -> ' . $change['new'];
+        }
+
+        return implode(', ', $parts);
+    }
+
+    private function boolLabel(mixed $value): string
+    {
+        return $value ? 'Aktif' : 'Nonaktif';
     }
 
     private function label($entity): string

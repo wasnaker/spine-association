@@ -43,6 +43,18 @@ class Association extends Model
         'is_active' => 'boolean',
     ];
 
+    public static function labels(): array
+    {
+        return [
+            'code'        => 'Kode',
+            'name'        => 'Nama',
+            'address'     => 'Alamat',
+            'province_id' => 'Provinsi',
+            'regency_id'  => 'Kota',
+            'is_active'   => 'Aktif',
+        ];
+    }
+
     public function uniqueIds(): array
     {
         return ['ulid'];
