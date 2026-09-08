@@ -77,6 +77,12 @@ return [
                     'type'    => 'number',
                     'default' => '4',
                 ],
+                [
+                    'key'     => 'association_user_start_number',
+                    'label'   => 'User Start Number',
+                    'type'    => 'number',
+                    'default' => '42738',
+                ],
             ],
         ],
     ],
